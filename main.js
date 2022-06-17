@@ -315,7 +315,7 @@ function MaxWorker(index) {
     let workersLeft = buildings[index].requiredWorkers * game.ownedBuildings[index] - game.assignedWorkers[index];
 
     for (let i = 0; i < workersLeft; i++) { 
-        if (game.resources.totalWorkers < game.resources.population) {
+        if (game.resources.totalWorkers <= Math.floor(game.resources.population)) {
             game.assignedWorkers[index] += 1;
             game.resources.totalWorkers += 1;
         }
@@ -375,8 +375,13 @@ setInterval(() => {
     availableWorkersElement.innerHTML = `Available Workers: ${(game.resources.population - game.resources.totalWorkers).toFixed(1)}`;
 
     if (game.resources.population < game.resources.houses * 5) {
-        game.resources.population += game.resources.food / 1000;
-        game.resources.food -= game.resources.food / 1000;
+        if (game.resources.food > 0) {
+            game.resources.population += 1;
+            game.resources.food -= 1;
+            UpdateResource("population");
+            UpdateResource("food");
+        }
+
     }
 }, 10);
 
