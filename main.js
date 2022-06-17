@@ -31,7 +31,7 @@ resetButton.addEventListener("click", event => {
             population: 0.1,
         },
         productionEfficiency: [0, 0, 0, 0, 0],
-        ownedBuildings: [1, 0, 0, 0, 0],
+        ownedBuildings: [5, 0, 0, 0, 0],
         assignedWorkers: [0, 0, 0, 0, 0],
     }
     UpdateBuildings();
